@@ -1,929 +1,1217 @@
 <!DOCTYPE html>
 <html lang="lt">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Granitė - Prabangios Termoizoliacinės Fasado Plokštės</title>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@300;400;600&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@300;400;600&family=Inter:wght@300;400;500;600&display=swap"
+      rel="stylesheet"
+    />
     <style>
-        :root {
-            --primary: #1e1e1e; /* Tamsi juoda */
-            --gold: #c5a47e; /* Prabangus auksas */
-            --text: #333;
-            --light: #f9f9f9;
-            --gray: #555;
-            --beige: #d4c4a8;
-            --border: #ddd;
+      :root {
+        --primary: #1e1e1e; /* Tamsi juoda */
+        --gold: #c5a47e; /* Prabangus auksas */
+        --text: #333;
+        --light: #f9f9f9;
+        --gray: #555;
+        --beige: #d4c4a8;
+        --border: #ddd;
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: 'Inter', sans-serif;
+        line-height: 1.7;
+        color: var(--text);
+        background: #fff;
+      }
+
+      h1,
+      h2,
+      h3 {
+        font-family: 'Playfair Display', serif;
+        font-weight: 300;
+      }
+
+      .container {
+        max-width: 1400px;
+        margin: 0 auto;
+        padding: 0 40px;
+      }
+
+      header {
+        background: rgba(255, 255, 255, 0.95);
+        padding: 2rem 0;
+        position: sticky;
+        top: 0;
+        z-index: 1000;
+        border-bottom: 1px solid var(--gold);
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+        animation: fadeInDown 1s ease-out;
+      }
+
+      @keyframes fadeInDown {
+        from {
+          opacity: 0;
+          transform: translateY(-50px);
         }
-
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-
-        body {
-            font-family: 'Inter', sans-serif;
-            line-height: 1.7;
-            color: var(--text);
-            background: #fff;
+        to {
+          opacity: 1;
+          transform: translateY(0);
         }
+      }
 
-        h1, h2, h3 { font-family: 'Playfair Display', serif; font-weight: 300; }
+      .header-content {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+      }
 
-        .container { max-width: 1400px; margin: 0 auto; padding: 0 40px; }
+      .logo-section {
+        display: flex;
+        align-items: center;
+        gap: 24px;
+      }
 
-        header {
-            background: rgba(255,255,255,0.95);
-            padding: 2rem 0;
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-            border-bottom: 1px solid var(--gold);
-            box-shadow: 0 4px 20px rgba(0,0,0,0.05);
-            animation: fadeInDown 1s ease-out;
+      .logo {
+        width: 80px;
+        height: 80px;
+        flex-shrink: 0;
+        transition: transform 0.3s ease;
+      }
+
+      .logo:hover {
+        transform: rotate(360deg);
+      }
+
+      .brand-name {
+        font-size: 2.8rem;
+        font-weight: 300;
+        letter-spacing: 5px;
+        color: var(--primary);
+      }
+
+      .contact-btn {
+        background: var(--gold);
+        color: var(--primary);
+        padding: 16px 40px;
+        border: none;
+        border-radius: 4px;
+        font-size: 1rem;
+        letter-spacing: 2px;
+        cursor: pointer;
+        transition: all 0.4s ease;
+        font-weight: 500;
+      }
+
+      .contact-btn:hover {
+        background: #b08e5f;
+        transform: scale(1.05);
+        box-shadow: 0 10px 30px rgba(197, 164, 126, 0.3);
+      }
+
+      .hero {
+        height: 100vh;
+        min-height: 800px;
+        background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)),
+          url('https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=2070')
+            center/cover no-repeat;
+        display: flex;
+        align-items: center;
+        color: #fff;
+        text-align: center;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .hero::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: inherit;
+        animation: parallax 30s linear infinite;
+      }
+
+      @keyframes parallax {
+        0% {
+          transform: translateY(0);
         }
-
-        @keyframes fadeInDown {
-            from { opacity: 0; transform: translateY(-50px); }
-            to { opacity: 1; transform: translateY(0); }
+        100% {
+          transform: translateY(100px);
         }
+      }
 
-        .header-content { display: flex; align-items: center; justify-content: space-between; }
+      .hero-content {
+        max-width: 900px;
+        margin: 0 auto;
+        position: relative;
+      }
 
-        .logo-section { display: flex; align-items: center; gap: 24px; }
+      .hero h1 {
+        font-size: 4.5rem;
+        margin-bottom: 2rem;
+        letter-spacing: 2px;
+        text-shadow: 2px 2px 20px rgba(0, 0, 0, 0.5);
+        animation: fadeIn 2s ease-out;
+      }
 
-        .logo { width: 80px; height: 80px; flex-shrink: 0; transition: transform 0.3s ease; }
-
-        .logo:hover { transform: rotate(360deg); }
-
-        .brand-name { font-size: 2.8rem; font-weight: 300; letter-spacing: 5px; color: var(--primary); }
-
-        .contact-btn {
-            background: var(--gold);
-            color: var(--primary);
-            padding: 16px 40px;
-            border: none;
-            border-radius: 4px;
-            font-size: 1rem;
-            letter-spacing: 2px;
-            cursor: pointer;
-            transition: all 0.4s ease;
-            font-weight: 500;
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
         }
-
-        .contact-btn:hover { background: #b08e5f; transform: scale(1.05); box-shadow: 0 10px 30px rgba(197,164,126,0.3); }
-
-        .hero {
-            height: 100vh;
-            min-height: 800px;
-            background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=2070') center/cover no-repeat;
-            display: flex;
-            align-items: center;
-            color: #fff;
-            text-align: center;
-            position: relative;
-            overflow: hidden;
+        to {
+          opacity: 1;
         }
+      }
 
-        .hero::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: inherit;
-            animation: parallax 30s linear infinite;
+      .hero p {
+        font-size: 1.5rem;
+        max-width: 800px;
+        margin: 0 auto;
+        opacity: 0.95;
+        text-shadow: 1px 1px 10px rgba(0, 0, 0, 0.5);
+        animation: fadeIn 2.5s ease-out;
+      }
+
+      .section {
+        padding: 120px 0;
+        opacity: 0;
+        transition: opacity 1s ease, transform 1s ease;
+      }
+
+      .section.visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      .section-alt {
+        background: var(--light);
+      }
+
+      .section-title {
+        font-size: 3rem;
+        text-align: center;
+        margin-bottom: 80px;
+        color: var(--primary);
+        position: relative;
+      }
+
+      .section-title::after {
+        content: '';
+        position: absolute;
+        bottom: -20px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 100px;
+        height: 2px;
+        background: var(--gold);
+        animation: grow 1s ease-out;
+      }
+
+      @keyframes grow {
+        from {
+          width: 0;
         }
-
-        @keyframes parallax {
-            0% { transform: translateY(0); }
-            100% { transform: translateY(100px); }
+        to {
+          width: 100px;
         }
+      }
 
-        .hero-content { max-width: 900px; margin: 0 auto; position: relative; }
+      .info-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 100px;
+        align-items: center;
+      }
 
-        .hero h1 { 
-            font-size: 4.5rem; 
-            margin-bottom: 2rem; 
-            letter-spacing: 2px; 
-            text-shadow: 2px 2px 20px rgba(0,0,0,0.5);
-            animation: fadeIn 2s ease-out;
+      .info-text h2 {
+        font-size: 3rem;
+        margin-bottom: 2rem;
+        color: var(--gold);
+      }
+
+      .info-text p {
+        font-size: 1.2rem;
+        margin-bottom: 1.5rem;
+        color: var(--gray);
+        line-height: 1.9;
+      }
+
+      .info-image {
+        width: 100%;
+        aspect-ratio: 4/3;
+        background: url('https://images.unsplash.com/photo-1600566753086-00f18fb6b3ea?q=80&w=2070')
+          center/cover;
+        border-radius: 12px;
+        box-shadow: 0 20px 50px rgba(0, 0, 0, 0.15);
+        transition: transform 0.5s ease;
+      }
+
+      .info-image:hover {
+        transform: scale(1.05);
+      }
+
+      .features-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 50px;
+      }
+
+      .feature-item {
+        text-align: center;
+        padding: 50px 30px;
+        background: #fff;
+        border-radius: 12px;
+        box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
+        transition: all 0.4s ease;
+      }
+
+      .feature-item:hover {
+        transform: translateY(-15px);
+        box-shadow: 0 20px 60px rgba(197, 164, 126, 0.2);
+        border: 1px solid var(--gold);
+      }
+
+      .feature-icon {
+        width: 80px;
+        height: 80px;
+        margin: 0 auto 30px;
+        background: var(--gold);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 2.5rem;
+        color: var(--primary);
+        animation: pulse 2s infinite;
+      }
+
+      @keyframes pulse {
+        0% {
+          transform: scale(1);
         }
-
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
+        50% {
+          transform: scale(1.05);
         }
-
-        .hero p { 
-            font-size: 1.5rem; 
-            max-width: 800px; 
-            margin: 0 auto; 
-            opacity: 0.95; 
-            text-shadow: 1px 1px 10px rgba(0,0,0,0.5);
-            animation: fadeIn 2.5s ease-out;
+        100% {
+          transform: scale(1);
         }
+      }
 
-        .section { padding: 120px 0; opacity: 0; transition: opacity 1s ease, transform 1s ease; }
+      .feature-item h3 {
+        font-size: 1.6rem;
+        margin-bottom: 20px;
+        color: var(--primary);
+      }
 
-        .section.visible { opacity: 1; transform: translateY(0); }
+      .feature-item p {
+        color: var(--gray);
+        font-size: 1.05rem;
+      }
 
-        .section-alt { background: var(--light); }
+      .textures-section {
+        background: var(--primary);
+        color: #fff;
+        padding: 120px 0;
+      }
 
-        .section-title { 
-            font-size: 3rem; 
-            text-align: center; 
-            margin-bottom: 80px; 
-            color: var(--primary); 
-            position: relative;
+      .textures-section .section-title {
+        color: #fff;
+      }
+
+      .textures-section .section-title::after {
+        background: var(--gold);
+      }
+
+      .textures-gallery {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+        gap: 40px;
+        margin-top: 60px;
+      }
+
+      .texture-card {
+        background: rgba(255, 255, 255, 0.05);
+        border-radius: 12px;
+        overflow: hidden;
+        transition: transform 0.4s ease;
+      }
+
+      .texture-card:hover {
+        transform: scale(1.05);
+        box-shadow: 0 0 20px rgba(197, 164, 126, 0.5);
+      }
+
+      .texture-img {
+        width: 100%;
+        aspect-ratio: 1/1;
+        object-fit: cover;
+        transition: filter 0.3s ease;
+      }
+
+      .texture-card:hover .texture-img {
+        filter: brightness(1.1);
+      }
+
+      .texture-label {
+        padding: 20px;
+        text-align: center;
+        font-size: 1.1rem;
+        font-weight: 500;
+      }
+
+      /* Calculator */
+      .calculator-section {
+        padding: 120px 0;
+        background: var(--light);
+      }
+
+      .calculator-box {
+        max-width: 1000px;
+        margin: 0 auto;
+        background: #fff;
+        padding: 60px;
+        border-radius: 12px;
+        box-shadow: 0 20px 60px rgba(0, 0, 0, 0.1);
+      }
+
+      .calc-form {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 30px;
+        margin-bottom: 40px;
+      }
+
+      .form-group label {
+        display: block;
+        font-size: 0.9rem;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        margin-bottom: 12px;
+        color: var(--primary);
+        font-weight: 600;
+      }
+
+      .form-group input {
+        width: 100%;
+        padding: 18px;
+        border: 2px solid var(--border);
+        border-radius: 8px;
+        font-size: 1.1rem;
+        transition: all 0.3s ease;
+        font-family: 'Inter', sans-serif;
+      }
+
+      .form-group input:focus {
+        outline: none;
+        border-color: var(--gold);
+        box-shadow: 0 0 0 4px rgba(197, 164, 126, 0.1);
+        transform: translateY(-2px);
+      }
+
+      .calc-submit {
+        grid-column: 1 / -1;
+        background: var(--gold);
+        color: var(--primary);
+        padding: 20px;
+        border: none;
+        border-radius: 8px;
+        font-size: 1.1rem;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        cursor: pointer;
+        transition: all 0.4s ease;
+        font-weight: 600;
+        margin-top: 20px;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .calc-submit:hover {
+        background: #b08e5f;
+        transform: translateY(-3px);
+        box-shadow: 0 10px 30px rgba(197, 164, 126, 0.3);
+      }
+
+      .calc-submit.loading {
+        pointer-events: none;
+        opacity: 0.7;
+      }
+
+      .calc-submit.loading::after {
+        content: '';
+        position: absolute;
+        right: 20px;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 20px;
+        height: 20px;
+        border: 3px solid rgba(30, 30, 30, 0.3);
+        border-top-color: var(--primary);
+        border-radius: 50%;
+        animation: spin 0.8s linear infinite;
+      }
+
+      @keyframes spin {
+        to {
+          transform: translateY(-50%) rotate(360deg);
         }
+      }
 
-        .section-title::after {
-            content: '';
-            position: absolute;
-            bottom: -20px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 100px;
-            height: 2px;
-            background: var(--gold);
-            animation: grow 1s ease-out;
-        }
+      .calc-results {
+        display: none;
+        margin-top: 60px;
+        padding-top: 60px;
+        border-top: 2px solid var(--border);
+        animation: fadeIn 1s ease-out;
+      }
 
-        @keyframes grow {
-            from { width: 0; }
-            to { width: 100px; }
-        }
+      .calc-results.show {
+        display: block;
+      }
 
-        .info-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 100px;
-            align-items: center;
-        }
+      .calc-results h3 {
+        font-size: 2rem;
+        margin-bottom: 40px;
+        text-align: center;
+        color: var(--primary);
+      }
 
-        .info-text h2 { font-size: 3rem; margin-bottom: 2rem; color: var(--gold); }
+      .result-row {
+        display: flex;
+        justify-content: space-between;
+        padding: 20px 30px;
+        margin-bottom: 15px;
+        background: var(--light);
+        border-radius: 8px;
+        font-size: 1.1rem;
+        transition: transform 0.3s ease;
+      }
 
-        .info-text p { 
-            font-size: 1.2rem; 
-            margin-bottom: 1.5rem; 
-            color: var(--gray); 
-            line-height: 1.9;
-        }
+      .result-row:hover {
+        transform: scale(1.02);
+      }
 
-        .info-image {
-            width: 100%;
-            aspect-ratio: 4/3;
-            background: url('https://images.unsplash.com/photo-1600566753086-00f18fb6b3ea?q=80&w=2070') center/cover;
-            border-radius: 12px;
-            box-shadow: 0 20px 50px rgba(0,0,0,0.15);
-            transition: transform 0.5s ease;
-        }
+      .result-row.highlight {
+        background: var(--gold);
+        color: var(--primary);
+        font-size: 1.3rem;
+        font-weight: 600;
+        margin-top: 30px;
+      }
 
-        .info-image:hover { transform: scale(1.05); }
+      .result-label {
+        color: var(--gray);
+      }
+      .result-value {
+        font-weight: 600;
+        color: var(--primary);
+      }
+      .result-row.highlight .result-label,
+      .result-row.highlight .result-value {
+        color: var(--primary);
+      }
 
-        .features-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 50px;
-        }
+      /* Specs */
+      .specs-section {
+        padding: 120px 0;
+        background: #fff;
+      }
 
-        .feature-item {
-            text-align: center;
-            padding: 50px 30px;
-            background: #fff;
-            border-radius: 12px;
-            box-shadow: 0 10px 40px rgba(0,0,0,0.08);
-            transition: all 0.4s ease;
-        }
+      .specs-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
+        gap: 60px;
+        max-width: 1100px;
+        margin: 0 auto;
+      }
 
-        .feature-item:hover { 
-            transform: translateY(-15px); 
-            box-shadow: 0 20px 60px rgba(197,164,126,0.2);
-            border: 1px solid var(--gold);
-        }
+      .spec-card {
+        background: var(--light);
+        padding: 50px;
+        border-radius: 12px;
+        box-shadow: 0 10px 40px rgba(0, 0, 0, 0.05);
+        transition: transform 0.4s ease;
+      }
 
-        .feature-icon {
-            width: 80px;
-            height: 80px;
-            margin: 0 auto 30px;
-            background: var(--gold);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 2.5rem;
-            color: var(--primary);
-            animation: pulse 2s infinite;
-        }
+      .spec-card:hover {
+        transform: translateY(-10px);
+      }
 
-        @keyframes pulse {
-            0% { transform: scale(1); }
-            50% { transform: scale(1.05); }
-            100% { transform: scale(1); }
-        }
+      .spec-card h3 {
+        font-size: 1.8rem;
+        margin-bottom: 30px;
+        color: var(--primary);
+        border-bottom: 3px solid var(--gold);
+        padding-bottom: 20px;
+      }
 
-        .feature-item h3 { 
-            font-size: 1.6rem; 
-            margin-bottom: 20px; 
-            color: var(--primary);
-        }
+      .spec-item {
+        display: flex;
+        justify-content: space-between;
+        padding: 20px 0;
+        border-bottom: 1px solid var(--border);
+      }
 
-        .feature-item p {
-            color: var(--gray);
-            font-size: 1.05rem;
-        }
+      .spec-item:last-child {
+        border-bottom: none;
+      }
 
-        .textures-section {
-            background: var(--primary);
-            color: #fff;
-            padding: 120px 0;
-        }
+      .spec-label {
+        font-weight: 600;
+        color: var(--primary);
+      }
+      .spec-value {
+        color: var(--gray);
+      }
 
-        .textures-section .section-title {
-            color: #fff;
-        }
+      .tolerance {
+        background: var(--primary);
+        color: #fff;
+        padding: 30px;
+        text-align: center;
+        margin-top: 30px;
+        border-radius: 8px;
+      }
 
-        .textures-section .section-title::after {
-            background: var(--gold);
-        }
+      .tolerance-label {
+        font-size: 1rem;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        margin-bottom: 15px;
+        opacity: 0.9;
+      }
 
-        .textures-gallery {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 40px;
-            margin-top: 60px;
-        }
+      .tolerance-value {
+        font-size: 2.5rem;
+        font-weight: 300;
+      }
 
-        .texture-card {
-            background: rgba(255,255,255,0.05);
-            border-radius: 12px;
-            overflow: hidden;
-            transition: transform 0.4s ease;
-        }
+      /* Footer */
+      footer {
+        background: var(--primary);
+        color: #fff;
+        padding: 100px 0 50px;
+      }
 
-        .texture-card:hover {
-            transform: scale(1.05);
-            box-shadow: 0 0 20px rgba(197,164,126,0.5);
-        }
+      .footer-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 80px;
+        margin-bottom: 80px;
+        text-align: center;
+      }
 
-        .texture-img {
-            width: 100%;
-            aspect-ratio: 1/1;
-            object-fit: cover;
-            transition: filter 0.3s ease;
-        }
+      .footer-section h4 {
+        font-size: 1rem;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        margin-bottom: 25px;
+        opacity: 0.7;
+      }
 
-        .texture-card:hover .texture-img {
-            filter: brightness(1.1);
-        }
+      .footer-contact {
+        font-size: 2.2rem;
+        font-weight: 300;
+      }
 
-        .texture-label {
-            padding: 20px;
-            text-align: center;
-            font-size: 1.1rem;
-            font-weight: 500;
-        }
+      .footer-logo {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 20px;
+      }
 
-        /* Calculator */
-        .calculator-section {
-            padding: 120px 0;
-            background: var(--light);
-        }
+      .footer-logo .logo {
+        width: 90px;
+        height: 90px;
+        transition: transform 0.3s ease;
+      }
 
-        .calculator-box {
-            max-width: 1000px;
-            margin: 0 auto;
-            background: #fff;
-            padding: 60px;
-            border-radius: 12px;
-            box-shadow: 0 20px 60px rgba(0,0,0,0.1);
-        }
+      .footer-logo .logo:hover {
+        transform: scale(1.1);
+      }
 
-        .calc-form {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 30px;
-            margin-bottom: 40px;
-        }
+      .footer-logo .brand-name {
+        color: #fff;
+        font-size: 2rem;
+      }
 
-        .form-group label {
-            display: block;
-            font-size: 0.9rem;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            margin-bottom: 12px;
-            color: var(--primary);
-            font-weight: 600;
-        }
+      .footer-link {
+        color: rgba(255, 255, 255, 0.8);
+        text-decoration: none;
+        font-size: 1.2rem;
+        transition: color 0.3s ease;
+      }
 
-        .form-group input {
-            width: 100%;
-            padding: 18px;
-            border: 2px solid var(--border);
-            border-radius: 8px;
-            font-size: 1.1rem;
-            transition: all 0.3s ease;
-            font-family: 'Inter', sans-serif;
-        }
+      .footer-link:hover {
+        color: var(--gold);
+      }
 
-        .form-group input:focus {
-            outline: none;
-            border-color: var(--gold);
-            box-shadow: 0 0 0 4px rgba(197,164,126,0.1);
-            transform: translateY(-2px);
-        }
+      .footer-bottom {
+        text-align: center;
+        padding-top: 50px;
+        border-top: 1px solid #444;
+        opacity: 0.6;
+        font-size: 0.95rem;
+      }
 
-        .calc-submit {
-            grid-column: 1 / -1;
-            background: var(--gold);
-            color: var(--primary);
-            padding: 20px;
-            border: none;
-            border-radius: 8px;
-            font-size: 1.1rem;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            cursor: pointer;
-            transition: all 0.4s ease;
-            font-weight: 600;
-            margin-top: 20px;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .calc-submit:hover {
-            background: #b08e5f;
-            transform: translateY(-3px);
-            box-shadow: 0 10px 30px rgba(197,164,126,0.3);
-        }
-
-        .calc-submit.loading {
-            pointer-events: none;
-            opacity: 0.7;
-        }
-
-        .calc-submit.loading::after {
-            content: '';
-            position: absolute;
-            right: 20px;
-            top: 50%;
-            transform: translateY(-50%);
-            width: 20px;
-            height: 20px;
-            border: 3px solid rgba(30,30,30,0.3);
-            border-top-color: var(--primary);
-            border-radius: 50%;
-            animation: spin 0.8s linear infinite;
-        }
-
-        @keyframes spin {
-            to { transform: translateY(-50%) rotate(360deg); }
-        }
-
-        .calc-results {
-            display: none;
-            margin-top: 60px;
-            padding-top: 60px;
-            border-top: 2px solid var(--border);
-            animation: fadeIn 1s ease-out;
-        }
-
-        .calc-results.show { display: block; }
-
-        .calc-results h3 {
-            font-size: 2rem;
-            margin-bottom: 40px;
-            text-align: center;
-            color: var(--primary);
-        }
-
-        .result-row {
-            display: flex;
-            justify-content: space-between;
-            padding: 20px 30px;
-            margin-bottom: 15px;
-            background: var(--light);
-            border-radius: 8px;
-            font-size: 1.1rem;
-            transition: transform 0.3s ease;
-        }
-
-        .result-row:hover { transform: scale(1.02); }
-
-        .result-row.highlight {
-            background: var(--gold);
-            color: var(--primary);
-            font-size: 1.3rem;
-            font-weight: 600;
-            margin-top: 30px;
-        }
-
-        .result-label { color: var(--gray); }
-        .result-value { font-weight: 600; color: var(--primary); }
-        .result-row.highlight .result-label,
-        .result-row.highlight .result-value { color: var(--primary); }
-
-        /* Specs */
-        .specs-section {
-            padding: 120px 0;
-            background: #fff;
-        }
-
+      @media (max-width: 968px) {
+        .info-grid,
+        .footer-grid,
         .specs-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
-            gap: 60px;
-            max-width: 1100px;
-            margin: 0 auto;
+          grid-template-columns: 1fr;
         }
-
+        .hero {
+          min-height: 100vh;
+          height: auto;
+          padding: 80px 0;
+        }
+        .hero h1 {
+          font-size: 2.5rem;
+          line-height: 1.3;
+        }
+        .hero p {
+          font-size: 1.2rem;
+        }
+        .brand-name {
+          font-size: 2rem;
+          letter-spacing: 3px;
+        }
+        .calculator-box {
+          padding: 40px 30px;
+        }
         .spec-card {
-            background: var(--light);
-            padding: 50px;
-            border-radius: 12px;
-            box-shadow: 0 10px 40px rgba(0,0,0,0.05);
-            transition: transform 0.4s ease;
+          padding: 35px 25px;
         }
+        .container {
+          padding: 0 20px;
+        }
+        .calc-form {
+          grid-template-columns: 1fr;
+        }
+        .textures-gallery {
+          grid-template-columns: 1fr;
+          gap: 30px;
+        }
+        .section {
+          padding: 80px 0;
+        }
+        .section-title {
+          font-size: 2.2rem;
+          margin-bottom: 50px;
+        }
+        .info-grid {
+          gap: 50px;
+        }
+        .info-text h2 {
+          font-size: 2.2rem;
+        }
+        .features-grid {
+          gap: 30px;
+        }
+        .footer-grid {
+          gap: 50px;
+        }
+        .result-row {
+          padding: 15px 20px;
+          font-size: 1rem;
+          flex-wrap: wrap;
+          gap: 10px;
+        }
+        .result-row.highlight {
+          font-size: 1.1rem;
+        }
+        .header-content {
+          flex-direction: column;
+          gap: 20px;
+          text-align: center;
+        }
+        .logo-section {
+          flex-direction: column;
+          gap: 15px;
+        }
+        .contact-btn {
+          width: 100%;
+        }
+      }
 
-        .spec-card:hover { transform: translateY(-10px); }
-
+      @media (max-width: 640px) {
+        .hero h1 {
+          font-size: 2rem;
+        }
+        .hero p {
+          font-size: 1.1rem;
+        }
+        .brand-name {
+          font-size: 1.5rem;
+        }
+        .logo {
+          width: 60px;
+          height: 60px;
+        }
+        .section-title {
+          font-size: 1.8rem;
+        }
+        .info-text h2 {
+          font-size: 1.8rem;
+        }
+        .calculator-box {
+          padding: 30px 20px;
+        }
+        .calc-form {
+          gap: 20px;
+        }
+        .form-group input {
+          padding: 15px;
+          font-size: 1rem;
+        }
+        .calc-submit {
+          padding: 16px;
+          font-size: 1rem;
+        }
+        .spec-card {
+          padding: 25px 20px;
+        }
         .spec-card h3 {
-            font-size: 1.8rem;
-            margin-bottom: 30px;
-            color: var(--primary);
-            border-bottom: 3px solid var(--gold);
-            padding-bottom: 20px;
+          font-size: 1.4rem;
         }
-
-        .spec-item {
-            display: flex;
-            justify-content: space-between;
-            padding: 20px 0;
-            border-bottom: 1px solid var(--border);
-        }
-
-        .spec-item:last-child { border-bottom: none; }
-
-        .spec-label { font-weight: 600; color: var(--primary); }
-        .spec-value { color: var(--gray); }
-
-        .tolerance {
-            background: var(--primary);
-            color: #fff;
-            padding: 30px;
-            text-align: center;
-            margin-top: 30px;
-            border-radius: 8px;
-        }
-
-        .tolerance-label {
-            font-size: 1rem;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            margin-bottom: 15px;
-            opacity: 0.9;
-        }
-
         .tolerance-value {
-            font-size: 2.5rem;
-            font-weight: 300;
+          font-size: 2rem;
         }
-
-        /* Footer */
-        footer {
-            background: var(--primary);
-            color: #fff;
-            padding: 100px 0 50px;
+        .footer-contact {
+          font-size: 1.8rem;
         }
-
-        .footer-grid { 
-            display: grid; 
-            grid-template-columns: repeat(3, 1fr); 
-            gap: 80px; 
-            margin-bottom: 80px; 
-            text-align: center; 
+        .feature-item {
+          padding: 35px 20px;
         }
-
-        .footer-section h4 {
-            font-size: 1rem;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            margin-bottom: 25px;
-            opacity: 0.7;
+        .feature-icon {
+          width: 60px;
+          height: 60px;
+          font-size: 2rem;
         }
-
-        .footer-contact { 
-            font-size: 2.2rem; 
-            font-weight: 300; 
+        header {
+          padding: 1.5rem 0;
         }
-
-        .footer-logo {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 20px;
+        .result-row {
+          font-size: 0.95rem;
+          padding: 12px 15px;
         }
-
-        .footer-logo .logo {
-            width: 90px;
-            height: 90px;
-            transition: transform 0.3s ease;
+        .calc-results h3 {
+          font-size: 1.5rem;
         }
+      }
 
-        .footer-logo .logo:hover { transform: scale(1.1); }
-
-        .footer-logo .brand-name {
-            color: #fff;
-            font-size: 2rem;
+      @media (max-width: 480px) {
+        .hero h1 {
+          font-size: 1.6rem;
         }
-
-        .footer-link {
-            color: rgba(255,255,255,0.8);
-            text-decoration: none;
-            font-size: 1.2rem;
-            transition: color 0.3s ease;
+        .hero p {
+          font-size: 1rem;
         }
-
-        .footer-link:hover { color: var(--gold); }
-
-        .footer-bottom { 
-            text-align: center; 
-            padding-top: 50px; 
-            border-top: 1px solid #444; 
-            opacity: 0.6;
-            font-size: 0.95rem;
+        .brand-name {
+          font-size: 1.2rem;
+          letter-spacing: 2px;
         }
-
-        @media (max-width: 968px) {
-            .info-grid, .footer-grid, .specs-grid { grid-template-columns: 1fr; }
-            .hero { 
-                min-height: 100vh; 
-                height: auto;
-                padding: 80px 0;
-            }
-            .hero h1 { font-size: 2.5rem; line-height: 1.3; }
-            .hero p { font-size: 1.2rem; }
-            .brand-name { font-size: 2rem; letter-spacing: 3px; }
-            .calculator-box { padding: 40px 30px; }
-            .spec-card { padding: 35px 25px; }
-            .container { padding: 0 20px; }
-            .calc-form { grid-template-columns: 1fr; }
-            .textures-gallery { 
-                grid-template-columns: 1fr; 
-                gap: 30px;
-            }
-            .section { padding: 80px 0; }
-            .section-title { font-size: 2.2rem; margin-bottom: 50px; }
-            .info-grid { gap: 50px; }
-            .info-text h2 { font-size: 2.2rem; }
-            .features-grid { gap: 30px; }
-            .footer-grid { gap: 50px; }
-            .result-row { 
-                padding: 15px 20px; 
-                font-size: 1rem;
-                flex-wrap: wrap;
-                gap: 10px;
-            }
-            .result-row.highlight { font-size: 1.1rem; }
-            .header-content { 
-                flex-direction: column; 
-                gap: 20px; 
-                text-align: center;
-            }
-            .logo-section { 
-                flex-direction: column; 
-                gap: 15px;
-            }
-            .contact-btn { width: 100%; }
+        .logo {
+          width: 50px;
+          height: 50px;
         }
-
-        @media (max-width: 640px) {
-            .hero h1 { font-size: 2rem; }
-            .hero p { font-size: 1.1rem; }
-            .brand-name { font-size: 1.5rem; }
-            .logo { width: 60px; height: 60px; }
-            .section-title { font-size: 1.8rem; }
-            .info-text h2 { font-size: 1.8rem; }
-            .calculator-box { padding: 30px 20px; }
-            .calc-form { gap: 20px; }
-            .form-group input { padding: 15px; font-size: 1rem; }
-            .calc-submit { padding: 16px; font-size: 1rem; }
-            .spec-card { padding: 25px 20px; }
-            .spec-card h3 { font-size: 1.4rem; }
-            .tolerance-value { font-size: 2rem; }
-            .footer-contact { font-size: 1.8rem; }
-            .feature-item { padding: 35px 20px; }
-            .feature-icon { width: 60px; height: 60px; font-size: 2rem; }
-            header { padding: 1.5rem 0; }
-            .result-row { 
-                font-size: 0.95rem;
-                padding: 12px 15px;
-            }
-            .calc-results h3 { font-size: 1.5rem; }
+        .contact-btn {
+          padding: 12px 25px;
+          font-size: 0.9rem;
         }
-
-        @media (max-width: 480px) {
-            .hero h1 { font-size: 1.6rem; }
-            .hero p { font-size: 1rem; }
-            .brand-name { font-size: 1.2rem; letter-spacing: 2px; }
-            .logo { width: 50px; height: 50px; }
-            .contact-btn { padding: 12px 25px; font-size: 0.9rem; }
-        }
+      }
     </style>
-</head>
-<body>
+  </head>
+  <body>
     <header>
-        <div class="container">
-            <div class="header-content">
-                <div class="logo-section">
-                    <svg class="logo" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
-                        <rect x="0" y="0" width="100" height="200" fill="#d4c4a8"/>
-                        <rect x="100" y="0" width="100" height="200" fill="#9d9d9d"/>
-                        <polygon points="100,0 200,0 150,50" fill="#7a7a7a"/>
-                        <polygon points="0,0 100,100 50,50" fill="#d4c4a8"/>
-                        <polygon points="100,100 150,50 100,0 50,50" fill="#fff"/>
-                        <polygon points="0,200 100,100 50,150" fill="#8a8a7a"/>
-                        <polygon points="200,200 100,100 150,150" fill="#a8a8a8"/>
-                    </svg>
-                    <span class="brand-name">granitė</span>
-                </div>
-                <button class="contact-btn" onclick="document.querySelector('footer').scrollIntoView({behavior: 'smooth'})">
-                    KONTAKTAI
-                </button>
-            </div>
+      <div class="container">
+        <div class="header-content">
+          <div class="logo-section">
+            <svg
+              class="logo"
+              viewBox="0 0 200 200"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <rect x="0" y="0" width="100" height="200" fill="#d4c4a8" />
+              <rect x="100" y="0" width="100" height="200" fill="#9d9d9d" />
+              <polygon points="100,0 200,0 150,50" fill="#7a7a7a" />
+              <polygon points="0,0 100,100 50,50" fill="#d4c4a8" />
+              <polygon points="100,100 150,50 100,0 50,50" fill="#fff" />
+              <polygon points="0,200 100,100 50,150" fill="#8a8a7a" />
+              <polygon points="200,200 100,100 150,150" fill="#a8a8a8" />
+            </svg>
+            <span class="brand-name">granitė</span>
+          </div>
+          <button
+            class="contact-btn"
+            onclick="document.querySelector('footer').scrollIntoView({behavior: 'smooth'})"
+          >
+            KONTAKTAI
+          </button>
         </div>
+      </div>
     </header>
 
     <section class="hero">
-        <div class="container">
-            <div class="hero-content">
-                <h1>Termoizoliacinės apdailos išorės plokštės</h1>
-                <p>Inovatyvus lauko apdailos ir apšiltinimo sprendimas. Granito betono mišinio plokštė ant jūsų pasirinkto polistirolo markės ir storio. Greitas ir paprastas montavimas ant sienų.</p>
-            </div>
+      <div class="container">
+        <div class="hero-content">
+          <h1>Termoizoliacinės apdailos išorės plokštės</h1>
+          <p>
+            Inovatyvus lauko apdailos ir apšiltinimo sprendimas. Granito betono
+            mišinio plokštė ant jūsų pasirinkto polistirolo markės ir storio.
+            Greitas ir paprastas montavimas ant sienų.
+          </p>
         </div>
+      </div>
     </section>
 
     <section class="section" id="info">
-        <div class="container">
-            <div class="info-grid">
-                <div class="info-text">
-                    <h2>Kas tai?</h2>
-                    <p>Granito betono mišinio plokštė ant jūsų pasirinkto lauko apšiltinimo polistirolo markės ir storio.</p>
-                    <p>Greitas ir paprastas montavimas ant sienų užtikrina efektyvų ir ilgalaikį rezultatą. Puiki termoizoliacija ir estetiška išvaizda.</p>
-                </div>
-                <div class="info-image"></div>
-            </div>
+      <div class="container">
+        <div class="info-grid">
+          <div class="info-text">
+            <h2>Kas tai?</h2>
+            <p>
+              Granito betono mišinio plokštė ant jūsų pasirinkto lauko
+              apšiltinimo polistirolo markės ir storio.
+            </p>
+            <p>
+              Greitas ir paprastas montavimas ant sienų užtikrina efektyvų ir
+              ilgalaikį rezultatą. Puiki termoizoliacija ir estetiška išvaizda.
+            </p>
+          </div>
+          <div class="info-image"></div>
         </div>
+      </div>
     </section>
 
     <section class="section section-alt" id="features">
-        <div class="container">
-            <h2 class="section-title">Privalumai</h2>
-            <div class="features-grid">
-                <div class="feature-item">
-                    <div class="feature-icon">🛡️</div>
-                    <h3>Termoizoliacija</h3>
-                    <p>Puiki šilumos izoliacija užtikrina energijos taupymą ir komfortą</p>
-                </div>
-                <div class="feature-item">
-                    <div class="feature-icon">💎</div>
-                    <h3>Granito betonas</h3>
-                    <p>Autentiška tekstūra ir neprilygstamas ilgaamžiškumas</p>
-                </div>
-                <div class="feature-item">
-                    <div class="feature-icon">🌧️</div>
-                    <h3>Atsparumas</h3>
-                    <p>Atlaiko visas oro sąlygas ir UV spindulius</p>
-                </div>
-                <div class="feature-item">
-                    <div class="feature-icon">⚡</div>
-                    <h3>Greitas montavimas</h3>
-                    <p>Efektyvi ir paprasta montavimo sistema</p>
-                </div>
-            </div>
+      <div class="container">
+        <h2 class="section-title">Privalumai</h2>
+        <div class="features-grid">
+          <div class="feature-item">
+            <div class="feature-icon">🛡️</div>
+            <h3>Termoizoliacija</h3>
+            <p>
+              Puiki šilumos izoliacija užtikrina energijos taupymą ir komfortą
+            </p>
+          </div>
+          <div class="feature-item">
+            <div class="feature-icon">💎</div>
+            <h3>Granito betonas</h3>
+            <p>Autentiška tekstūra ir neprilygstamas ilgaamžiškumas</p>
+          </div>
+          <div class="feature-item">
+            <div class="feature-icon">🌧️</div>
+            <h3>Atsparumas</h3>
+            <p>Atlaiko visas oro sąlygas ir UV spindulius</p>
+          </div>
+          <div class="feature-item">
+            <div class="feature-icon">⚡</div>
+            <h3>Greitas montavimas</h3>
+            <p>Efektyvi ir paprasta montavimo sistema</p>
+          </div>
         </div>
+      </div>
     </section>
 
     <section class="textures-section" id="textures">
-        <div class="container">
-            <h2 class="section-title">Tekstūros ir spalvos</h2>
-            <div class="textures-gallery">
-                <div class="texture-card">
-                    <img src="https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?q=80&w=800" alt="Pilka tekstūra" class="texture-img">
-                    <div class="texture-label">Pilka</div>
-                </div>
-                <div class="texture-card">
-                    <img src="https://images.unsplash.com/photo-1615873968403-89e068629265?q=80&w=800" alt="Smėlio tekstūra" class="texture-img">
-                    <div class="texture-label">Smėlio</div>
-                </div>
-                <div class="texture-card">
-                    <img src="https://images.unsplash.com/photo-1604580864964-0462f5d5b1a8?q=80&w=800" alt="Tamsiai pilka" class="texture-img">
-                    <div class="texture-label">Tamsiai pilka</div>
-                </div>
-            </div>
+      <div class="container">
+        <h2 class="section-title">Tekstūros ir spalvos</h2>
+        <div class="textures-gallery">
+          <div class="texture-card">
+            <img
+              src="https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?q=80&w=800"
+              alt="Pilka tekstūra"
+              class="texture-img"
+            />
+            <div class="texture-label">Pilka</div>
+          </div>
+          <div class="texture-card">
+            <img
+              src="https://images.unsplash.com/photo-1615873968403-89e068629265?q=80&w=800"
+              alt="Smėlio tekstūra"
+              class="texture-img"
+            />
+            <div class="texture-label">Smėlio</div>
+          </div>
+          <div class="texture-card">
+            <img
+              src="https://images.unsplash.com/photo-1604580864964-0462f5d5b1a8?q=80&w=800"
+              alt="Tamsiai pilka"
+              class="texture-img"
+            />
+            <div class="texture-label">Tamsiai pilka</div>
+          </div>
         </div>
+      </div>
     </section>
 
     <section class="calculator-section" id="calculator">
-        <div class="container">
-            <h2 class="section-title">Plokščių kiekio skaičiuoklė</h2>
-            
-            <div class="calculator-box">
-                <form class="calc-form" onsubmit="calculate(event)">
-                    <div class="form-group">
-                        <label>Namo ilgis (m)</label>
-                        <input type="number" id="length" step="0.1" min="0" placeholder="12.0" required>
-                    </div>
-                    <div class="form-group">
-                        <label>Namo plotis (m)</label>
-                        <input type="number" id="width" step="0.1" min="0" placeholder="10.0" required>
-                    </div>
-                    <div class="form-group">
-                        <label>Namo aukštis (m)</label>
-                        <input type="number" id="height" step="0.1" min="0" placeholder="6.0" required>
-                    </div>
-                    <div class="form-group">
-                        <label>Durų kiekis</label>
-                        <input type="number" id="doors" step="1" min="0" placeholder="2" required>
-                    </div>
-                    <div class="form-group">
-                        <label>Langų kiekis</label>
-                        <input type="number" id="windows" step="1" min="0" placeholder="8" required>
-                    </div>
-                    <button type="submit" class="calc-submit">Skaičiuoti</button>
-                </form>
+      <div class="container">
+        <h2 class="section-title">Plokščių kiekio skaičiuoklė</h2>
 
-                <div class="calc-results" id="results">
-                    <h3>Skaičiavimo rezultatai</h3>
-                    <div class="result-row">
-                        <span class="result-label">Bendras sienų plotas:</span>
-                        <span class="result-value" id="totalArea">0 m²</span>
-                    </div>
-                    <div class="result-row">
-                        <span class="result-label">Durų plotas:</span>
-                        <span class="result-value" id="doorsArea">0 m²</span>
-                    </div>
-                    <div class="result-row">
-                        <span class="result-label">Langų plotas:</span>
-                        <span class="result-value" id="windowsArea">0 m²</span>
-                    </div>
-                    <div class="result-row">
-                        <span class="result-label">Dengiamas plotas:</span>
-                        <span class="result-value" id="coverageArea">0 m²</span>
-                    </div>
-                    <div class="result-row highlight">
-                        <span class="result-label">Reikalingas kiekis (480×480 mm):</span>
-                        <span class="result-value" id="plates1">0 vnt.</span>
-                    </div>
-                    <div class="result-row highlight">
-                        <span class="result-label">Alternatyva (481×300 mm):</span>
-                        <span class="result-value" id="plates2">0 vnt.</span>
-                    </div>
-                </div>
+        <div class="calculator-box">
+          <form class="calc-form" onsubmit="calculate(event)">
+            <div class="form-group">
+              <label>Namo ilgis (m)</label>
+              <input
+                type="number"
+                id="length"
+                step="0.1"
+                min="0"
+                placeholder="12.0"
+                required
+              />
             </div>
+            <div class="form-group">
+              <label>Namo plotis (m)</label>
+              <input
+                type="number"
+                id="width"
+                step="0.1"
+                min="0"
+                placeholder="10.0"
+                required
+              />
+            </div>
+            <div class="form-group">
+              <label>Namo aukštis (m)</label>
+              <input
+                type="number"
+                id="height"
+                step="0.1"
+                min="0"
+                placeholder="6.0"
+                required
+              />
+            </div>
+            <div class="form-group">
+              <label>Durų kiekis</label>
+              <input
+                type="number"
+                id="doors"
+                step="1"
+                min="0"
+                placeholder="2"
+                required
+              />
+            </div>
+            <div class="form-group">
+              <label>Langų kiekis</label>
+              <input
+                type="number"
+                id="windows"
+                step="1"
+                min="0"
+                placeholder="8"
+                required
+              />
+            </div>
+            <button type="submit" class="calc-submit">Skaičiuoti</button>
+          </form>
+
+          <div class="calc-results" id="results">
+            <h3>Skaičiavimo rezultatai</h3>
+            <div class="result-row">
+              <span class="result-label">Bendras sienų plotas:</span>
+              <span class="result-value" id="totalArea">0 m²</span>
+            </div>
+            <div class="result-row">
+              <span class="result-label">Durų plotas:</span>
+              <span class="result-value" id="doorsArea">0 m²</span>
+            </div>
+            <div class="result-row">
+              <span class="result-label">Langų plotas:</span>
+              <span class="result-value" id="windowsArea">0 m²</span>
+            </div>
+            <div class="result-row">
+              <span class="result-label">Dengiamas plotas:</span>
+              <span class="result-value" id="coverageArea">0 m²</span>
+            </div>
+            <div class="result-row highlight">
+              <span class="result-label">Reikalingas kiekis (480×480 mm):</span>
+              <span class="result-value" id="plates1">0 vnt.</span>
+            </div>
+            <div class="result-row highlight">
+              <span class="result-label">Alternatyva (481×300 mm):</span>
+              <span class="result-value" id="plates2">0 vnt.</span>
+            </div>
+          </div>
         </div>
+      </div>
     </section>
 
     <section class="specs-section" id="specs">
-        <div class="container">
-            <h2 class="section-title">Techninės specifikacijos</h2>
-            
-            <div class="specs-grid">
-                <div class="spec-card">
-                    <h3>Matmenys</h3>
-                    <div class="spec-item">
-                        <span class="spec-label">480 × 480 × 16 mm</span>
-                        <span class="spec-value">6,6 kg ± 100 g</span>
-                    </div>
-                    <div class="spec-item">
-                        <span class="spec-label">481 × 300 × 25 mm</span>
-                        <span class="spec-value">5,4 kg ± 100 g</span>
-                    </div>
-                    <div class="tolerance">
-                        <div class="tolerance-label">Plokščių storio paklaida</div>
-                        <div class="tolerance-value">± 2 mm</div>
-                    </div>
-                </div>
-                
-                <div class="spec-card">
-                    <h3>Charakteristikos</h3>
-                    <div class="spec-item">
-                        <span class="spec-label">Plotas 480×480</span>
-                        <span class="spec-value">0,2304 m²</span>
-                    </div>
-                    <div class="spec-item">
-                        <span class="spec-label">Plotas 481×300</span>
-                        <span class="spec-value">0,1443 m²</span>
-                    </div>
-                    <div class="spec-item">
-                        <span class="spec-label">Tarnavimo laikas</span>
-                        <span class="spec-value">50+ metų</span>
-                    </div>
-                    <div class="tolerance">
-                        <div class="tolerance-label">Pastaba</div>
-                        <div class="tolerance-value" style="font-size: 1.2rem;">Svoriai be polistero</div>
-                    </div>
-                </div>
+      <div class="container">
+        <h2 class="section-title">Techninės specifikacijos</h2>
+
+        <div class="specs-grid">
+          <div class="spec-card">
+            <h3>Matmenys</h3>
+            <div class="spec-item">
+              <span class="spec-label">480 × 480 × 16 mm</span>
+              <span class="spec-value">6,6 kg ± 100 g</span>
             </div>
+            <div class="spec-item">
+              <span class="spec-label">481 × 300 × 25 mm</span>
+              <span class="spec-value">5,4 kg ± 100 g</span>
+            </div>
+            <div class="tolerance">
+              <div class="tolerance-label">Plokščių storio paklaida</div>
+              <div class="tolerance-value">± 2 mm</div>
+            </div>
+          </div>
+
+          <div class="spec-card">
+            <h3>Charakteristikos</h3>
+            <div class="spec-item">
+              <span class="spec-label">Plotas 480×480</span>
+              <span class="spec-value">0,2304 m²</span>
+            </div>
+            <div class="spec-item">
+              <span class="spec-label">Plotas 481×300</span>
+              <span class="spec-value">0,1443 m²</span>
+            </div>
+            <div class="spec-item">
+              <span class="spec-label">Tarnavimo laikas</span>
+              <span class="spec-value">50+ metų</span>
+            </div>
+            <div class="tolerance">
+              <div class="tolerance-label">Pastaba</div>
+              <div class="tolerance-value" style="font-size: 1.2rem">
+                Svoriai be polistero
+              </div>
+            </div>
+          </div>
         </div>
+      </div>
     </section>
 
     <footer>
-        <div class="container">
-            <div class="footer-grid">
-                <div class="footer-section">
-                    <h4>Kontaktas</h4>
-                    <p class="footer-contact">+370 689 81724</p>
-                </div>
-                
-                <div class="footer-section footer-logo">
-                    <svg class="logo" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
-                        <rect x="0" y="0" width="100" height="200" fill="#d4c4a8"/>
-                        <rect x="100" y="0" width="100" height="200" fill="#9d9d9d"/>
-                        <polygon points="100,0 200,0 150,50" fill="#7a7a7a"/>
-                        <polygon points="0,0 100,100 50,50" fill="#d4c4a8"/>
-                        <polygon points="100,100 150,50 100,0 50,50" fill="#fff"/>
-                        <polygon points="0,200 100,100 50,150" fill="#8a8a7a"/>
-                        <polygon points="200,200 100,100 150,150" fill="#a8a8a8"/>
-                    </svg>
-                    <span class="brand-name">granitė</span>
-                </div>
-                
-                <div class="footer-section">
-                    <h4>Daugiau informacijos</h4>
-                    <a href="https://www.facebook.com/graniteeeeee" target="_blank" class="footer-link">
-                        <p>Facebook / graniteeeeee</p>
-                    </a>
-                </div>
-            </div>
-            
-            <div class="footer-bottom">
-                <p>&copy; 2024 Granitė. Visos teisės saugomos.</p>
-            </div>
+      <div class="container">
+        <div class="footer-grid">
+          <div class="footer-section">
+            <h4>Kontaktas</h4>
+            <p class="footer-contact">+370 689 81724</p>
+          </div>
+
+          <div class="footer-section footer-logo">
+            <svg
+              class="logo"
+              viewBox="0 0 200 200"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <rect x="0" y="0" width="100" height="200" fill="#d4c4a8" />
+              <rect x="100" y="0" width="100" height="200" fill="#9d9d9d" />
+              <polygon points="100,0 200,0 150,50" fill="#7a7a7a" />
+              <polygon points="0,0 100,100 50,50" fill="#d4c4a8" />
+              <polygon points="100,100 150,50 100,0 50,50" fill="#fff" />
+              <polygon points="0,200 100,100 50,150" fill="#8a8a7a" />
+              <polygon points="200,200 100,100 150,150" fill="#a8a8a8" />
+            </svg>
+            <span class="brand-name">granitė</span>
+          </div>
+
+          <div class="footer-section">
+            <h4>Daugiau informacijos</h4>
+            <a
+              href="https://www.facebook.com/graniteeeee"
+              target="_blank"
+              class="footer-link"
+            >
+              <p>Facebook / graniteeeee</p>
+            </a>
+          </div>
         </div>
+
+        <div class="footer-bottom">
+          <p>&copy; 2024 Granitė. Visos teisės saugomos.</p>
+        </div>
+      </div>
     </footer>
 
     <script>
-        // Scroll animations
-        const sections = document.querySelectorAll('.section');
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('visible');
-                }
-            });
-        }, { threshold: 0.1 });
+      // Scroll animations
+      const sections = document.querySelectorAll('.section');
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('visible');
+            }
+          });
+        },
+        { threshold: 0.1 }
+      );
 
-        sections.forEach(section => {
-            section.style.transform = 'translateY(50px)';
-            observer.observe(section);
-        });
+      sections.forEach((section) => {
+        section.style.transform = 'translateY(50px)';
+        observer.observe(section);
+      });
 
-        // Calculator
-        function calculate(e) {
-            e.preventDefault();
-            
-            const button = e.target.querySelector('.calc-submit');
-            button.classList.add('loading');
-            button.textContent = 'Skaičiuojama...';
-            
-            setTimeout(() => {
-                const length = parseFloat(document.getElementById('length').value);
-                const width = parseFloat(document.getElementById('width').value);
-                const height = parseFloat(document.getElementById('height').value);
-                const doors = parseInt(document.getElementById('doors').value);
-                const windows = parseInt(document.getElementById('windows').value);
+      // Calculator
+      function calculate(e) {
+        e.preventDefault();
 
-                const totalArea = 2 * (length + width) * height;
-                
-                const doorArea = 2.1 * 0.9;
-                const windowArea = 1.4 * 1.2;
-                const doorsArea = doors * doorArea;
-                const windowsArea = windows * windowArea;
-                
-                const coverageArea = totalArea - doorsArea - windowsArea;
-                
-                const plate1Area = 0.48 * 0.48;
-                const plate2Area = 0.481 * 0.3;
-                
-                const plates1 = Math.ceil((coverageArea / plate1Area) * 1.1);
-                const plates2 = Math.ceil((coverageArea / plate2Area) * 1.1);
+        const button = e.target.querySelector('.calc-submit');
+        button.classList.add('loading');
+        button.textContent = 'Skaičiuojama...';
 
-                document.getElementById('totalArea').textContent = totalArea.toFixed(2) + ' m²';
-                document.getElementById('doorsArea').textContent = doorsArea.toFixed(2) + ' m²';
-                document.getElementById('windowsArea').textContent = windowsArea.toFixed(2) + ' m²';
-                document.getElementById('coverageArea').textContent = coverageArea.toFixed(2) + ' m²';
-                document.getElementById('plates1').textContent = plates1 + ' vnt.';
-                document.getElementById('plates2').textContent = plates2 + ' vnt.';
+        setTimeout(() => {
+          const length = parseFloat(document.getElementById('length').value);
+          const width = parseFloat(document.getElementById('width').value);
+          const height = parseFloat(document.getElementById('height').value);
+          const doors = parseInt(document.getElementById('doors').value);
+          const windows = parseInt(document.getElementById('windows').value);
 
-                button.classList.remove('loading');
-                button.textContent = 'Skaičiuoti';
-                
-                document.getElementById('results').classList.add('show');
-                setTimeout(() => {
-                    document.getElementById('results').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-                }, 200);
-            }, 800);
-        }
+          const totalArea = 2 * (length + width) * height;
+
+          const doorArea = 2.1 * 0.9;
+          const windowArea = 1.4 * 1.2;
+          const doorsArea = doors * doorArea;
+          const windowsArea = windows * windowArea;
+
+          const coverageArea = totalArea - doorsArea - windowsArea;
+
+          const plate1Area = 0.48 * 0.48;
+          const plate2Area = 0.481 * 0.3;
+
+          const plates1 = Math.ceil((coverageArea / plate1Area) * 1.1);
+          const plates2 = Math.ceil((coverageArea / plate2Area) * 1.1);
+
+          document.getElementById('totalArea').textContent =
+            totalArea.toFixed(2) + ' m²';
+          document.getElementById('doorsArea').textContent =
+            doorsArea.toFixed(2) + ' m²';
+          document.getElementById('windowsArea').textContent =
+            windowsArea.toFixed(2) + ' m²';
+          document.getElementById('coverageArea').textContent =
+            coverageArea.toFixed(2) + ' m²';
+          document.getElementById('plates1').textContent = plates1 + ' vnt.';
+          document.getElementById('plates2').textContent = plates2 + ' vnt.';
+
+          button.classList.remove('loading');
+          button.textContent = 'Skaičiuoti';
+
+          document.getElementById('results').classList.add('show');
+          setTimeout(() => {
+            document
+              .getElementById('results')
+              .scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+          }, 200);
+        }, 800);
+      }
     </script>
-</body>
+  </body>
 </html>
